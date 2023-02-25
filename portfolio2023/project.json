@@ -1,89 +1,124 @@
 {
-    "name": "portfolio",
-    "$schema": "../node_modules/nx/schemas/project-schema.json",
-    "projectType": "application",
-    "sourceRoot": "./src",
-    "prefix": "portfolio",
-    "targets": {
-        "build": {
-            "executor": "@angular-devkit/build-angular:browser",
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "outputPath": "dist/portfolio",
-                "index": "./src/index.html",
-                "main": "./src/main.ts",
-                "polyfills": ["zone.js"],
-                "tsConfig": "./tsconfig.app.json",
-                "inlineStyleLanguage": "scss",
-                "assets": ["./src/favicon.ico", "./src/assets"],
-                "styles": ["./src/styles.scss"],
-                "scripts": []
+  "name": "portfolio",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "./src",
+  "prefix": "portfolio",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/portfolio",
+        "index": "./src/index.html",
+        "main": "./src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "./tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "./src/favicon.ico",
+          "./src/assets"
+        ],
+        "styles": [
+          "./src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
             },
-            "configurations": {
-                "production": {
-                    "budgets": [{
-                            "type": "initial",
-                            "maximumWarning": "500kb",
-                            "maximumError": "1mb"
-                        },
-                        {
-                            "type": "anyComponentStyle",
-                            "maximumWarning": "2kb",
-                            "maximumError": "4kb"
-                        }
-                    ],
-                    "outputHashing": "all"
-                },
-                "development": {
-                    "buildOptimizer": false,
-                    "optimization": false,
-                    "vendorChunk": true,
-                    "extractLicenses": false,
-                    "sourceMap": true,
-                    "namedChunks": true
-                }
-            },
-            "defaultConfiguration": "production"
-        },
-        "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
-            "configurations": {
-                "production": {
-                    "browserTarget": "portfolio:build:production"
-                },
-                "development": {
-                    "browserTarget": "portfolio:build:development"
-                }
-            },
-            "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-            "executor": "@angular-devkit/build-angular:extract-i18n",
-            "options": {
-                "browserTarget": "portfolio:build"
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
             }
+          ],
+          "outputHashing": "all"
         },
-        "lint": {
-            "executor": "@nrwl/linter:eslint",
-            "outputs": ["{options.outputFile}"],
-            "options": {
-                "lintFilePatterns": ["./src/**/*.ts", "./src/**/*.html"]
-            }
-        },
-        "test": {
-            "executor": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
-            "options": {
-                "jestConfig": "jest.config.app.ts",
-                "passWithNoTests": true
-            },
-            "configurations": {
-                "ci": {
-                    "ci": true,
-                    "codeCoverage": true
-                }
-            }
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
+      },
+      "defaultConfiguration": "production"
     },
-    "tags": []
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "portfolio:build:production"
+        },
+        "development": {
+          "browserTarget": "portfolio:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "portfolio:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "./src/**/*.ts",
+          "./src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}"
+      ],
+      "options": {
+        "jestConfig": "jest.config.app.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "start": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "start"
+      }
+    },
+    "e2e-test": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "e2e-test"
+      }
+    },
+    "prettier:check": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "prettier:check"
+      }
+    }
+  },
+  "tags": []
 }
